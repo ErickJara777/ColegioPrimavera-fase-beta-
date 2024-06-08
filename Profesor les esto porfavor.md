@@ -3,7 +3,7 @@ en el form1 cambie un detalle pero en el .cs agregue el tema de la conexion ya q
 y decidi probarlo en la pc de la santo tomas para igualmente siesque me surgia alguna duda consultarle.
 
 Integrantes:
-Erick Jara
-Matias Caqueo
-Pablo Pardo
-Jose Vejar
+Erick Jara,
+Matias Caqueo,
+Pablo Pardo,
+Jose Vejar,
