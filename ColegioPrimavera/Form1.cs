@@ -14,7 +14,7 @@ namespace ColegioPrimavera
 {
     public partial class Form1 : Form
     {
-        private string connectionString = "Server=DESKTOP-EJTT724\\SQLEXPRESS;Database=evaluacionPrimavera;Trusted_Connection=True;";
+        private string connectionString = "Server=IQQ042MDALU0209;Database=ColegioPrueba;Trusted_Connection=True;";
         private List<Alumno> alumnos;
 
         public Form1()
@@ -30,7 +30,7 @@ namespace ColegioPrimavera
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT * FROM Alumnos";
+                string query = "SELECT * FROM dbo.alumno";
                 SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -100,7 +100,7 @@ namespace ColegioPrimavera
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
-                        string query = "INSERT INTO Alumnos (ID, Nombre, Apellido, FechaNacimiento) VALUES (@ID, @Nombre, @Apellido, @FechaNacimiento)";
+                        string query = "INSERT INTO dbo.alumno (ID, Nombre, Apellido, FechaNacimiento) VALUES (@ID, @Nombre, @Apellido, @FechaNacimiento)";
                         SqlCommand command = new SqlCommand(query, connection);
                         command.Parameters.AddWithValue("@ID", nuevoAlumno.ID);
                         command.Parameters.AddWithValue("@Nombre", nuevoAlumno.Nombre);
@@ -134,7 +134,7 @@ namespace ColegioPrimavera
                         using (SqlConnection connection = new SqlConnection(connectionString))
                         {
                             connection.Open();
-                            string query = "UPDATE Alumnos SET Nombre = @Nombre, Apellido = @Apellido, FechaNacimiento = @FechaNacimiento WHERE ID = @ID";
+                            string query = "UPDATE dbo.alumno SET Nombre = @Nombre, Apellido = @Apellido, FechaNacimiento = @FechaNacimiento WHERE ID = @ID";
                             SqlCommand command = new SqlCommand(query, connection);
                             command.Parameters.AddWithValue("@ID", alumno.ID);
                             command.Parameters.AddWithValue("@Nombre", alumno.Nombre);
@@ -143,7 +143,7 @@ namespace ColegioPrimavera
                             command.ExecuteNonQuery();
 
                             int rowsAffected = command.ExecuteNonQuery();
-                            if (rowsAffected > 0) ;
+                            if (rowsAffected > 0);
                         }
                         CargarAlumnosDesdeBaseDeDatos();
                         LimpiarCampos();
@@ -168,13 +168,13 @@ namespace ColegioPrimavera
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
-                        string query = "DELETE FROM Alumnos WHERE ID = @ID";
+                        string query = "DELETE FROM dbo.alumno WHERE ID = @ID";
                         SqlCommand command = new SqlCommand(query, connection);
                         command.Parameters.AddWithValue("@ID", alumno.ID);
                         command.ExecuteNonQuery();
 
                         int rowsAffected = command.ExecuteNonQuery();
-                        if (rowsAffected > 0) ;
+                        if (rowsAffected > 0);
                     }
                     CargarAlumnosDesdeBaseDeDatos();
                     LimpiarCampos();
@@ -187,7 +187,7 @@ namespace ColegioPrimavera
             }
             else
             {
-                MessageBox.Show("por favor, ingrese un ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("por favor, ingrese un ID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -203,17 +203,17 @@ namespace ColegioPrimavera
         {
             if (string.IsNullOrWhiteSpace(txtID.Text))
             {
-                MessageBox.Show("ingrese un id porfavor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ingrese un id porfavor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
-                MessageBox.Show("ingrese un nombre porfavor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ingrese un nombre porfavor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (string.IsNullOrWhiteSpace(txtApellido.Text))
             {
-                MessageBox.Show("ingrese un apellido porfavor.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ingrese un apellido porfavor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (dtpFechaNacimiento.Value >= DateTime.Now)
